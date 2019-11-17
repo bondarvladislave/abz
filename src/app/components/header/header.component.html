@@ -1,0 +1,32 @@
+<div class="header">
+  <div class="container">
+    <div class="header__logo">
+      <img src="../../../assets/img/logo.svg" alt="">
+    </div>
+
+    <nav>
+      <ul class="menu">
+        <li *ngFor="let item of menuConfig" class="menu__item" routerLinkActive="active">
+          <a routerLink="/{{item.route}}">{{item.text}}</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header__info">
+      <div class="user">
+        <div>
+          <div class="user__name">
+            Superstar
+          </div>
+          <a href="mailto:superstar@gmail.com" class="user__mail">
+            Superstar@gmail.com
+          </a>
+        </div>
+        <img class="user__avatar" src="../../../assets/img/user-superstar-2x.jpg" alt="" >
+      </div>
+      <div class="header__logout">
+        <img src="../../../assets/img/icons/sign-out.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>

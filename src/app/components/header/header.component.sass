@@ -1,0 +1,47 @@
+$orange: #ef6c00
+$blue: #283593
+
+.header
+  position: fixed
+  top: 0
+  z-index: 5
+  background-color: #fff
+  width: 100%
+  box-shadow: 0px -2px 4px black
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 64px
+  &__logo
+    img
+      width: 134px
+  .menu
+    display: flex
+    &__item
+      margin-right: 29px
+      &.active a
+        color: $blue
+      &:last-child
+        margin-right: 0
+  &__info
+    display: flex
+    align-items: center
+  &__logout
+    cursor: pointer
+
+.user
+  display: flex
+  align-items: center
+  margin-right: 14px
+  text-align: right
+  &__name
+    font-size: 14px
+  &__mail
+    color: #8d8c8c
+    font-size: 12px
+  &__avatar
+    margin-left: 14px
+    width: 40px
+    border-radius: 50%
+

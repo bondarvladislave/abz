@@ -1,0 +1,198 @@
+<div class="promo">
+  <div class="container">
+    <h1 class="promo__caption">Test assignment for Frontend Developer position</h1>
+    <div class="promo__text">
+      <p>We kindly remind you that your test assignment should</p>
+      <p>be submitted as a link to github/bitbucket repository.</p>
+      <p>Please be patient, we consider and respond to every application that meets minimum requirements. We look
+        forward to your submission. Good luck!</p>
+    </div>
+    <div class="promo__btn">
+      <button class="btn btn-primary">
+        Sign Up
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="acquainted">
+  <div class="container">
+    <img src="../../../assets/img/man-mobile.svg" alt="">
+    <div class="acquainted__content">
+      <h2 class="acquainted__caption">
+        Let's get acquainted
+      </h2>
+      <div class="acquainted__text">
+        <h3>
+          I am cool frontend developer
+        </h3>
+        <p>
+          When real users have a slow experience on mobile, they're much less likely to find what they are looking for
+          or purchase from you in the future. For many sites this equates to a huge missed opportunity, especially when
+          more than half of visits are abandoned if a mobile page takes over 3 seconds to load.
+        </p>
+        <p>
+          Last week, Google Search and Ads teams announced two new speed initiatives to help improve user-experience on
+          the web.
+        </p>
+      </div>
+      <div class="acquainted__btn">Sign Up</div>
+    </div>
+  </div>
+</div>
+
+<div class="stack">
+  <div class="container">
+    <h2 class="stack__caption">
+      About my relationships with <br>
+      web-development
+    </h2>
+
+    <!--TODO: Array of arrays? Need clarify-->
+    <div class="stack__items">
+
+      <div class="stack-item" *ngFor="let item of stackData">
+        <img src="../../../assets/img/{{item.img}}" alt="" class="stack-item__img">
+        <h3 class="stack-item__caption">
+          {{item.caption}}
+        </h3>
+        <div class="stack-item__text">
+          {{item.text}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="requirements">
+  <div class="container">
+    <h2 class="requirements__caption">
+      General requirements for the test task
+    </h2>
+    <div class="requirements__content">
+      <div class="requirements__text">
+        <p>Users want to find answers to their questions quickly and data shows that people really care about how
+          quickly their pages load. The Search team announced speed would be a ranking signal for desktop searches in
+          2010 and as of this month (July 2018), page speed will be a ranking factor for mobile searches too.</p>
+        <p>If you're a developer working on a site, now is a good time to evaluate your performance using our speed
+          tools. Think about how performance affects the user experience of your pages and consider measuring a variety
+          of real-world user-centric performance metrics.</p>
+        <p>Are you shipping too much JavaScript? Too many images? Images and JavaScript are the most significant
+          contributors to the page weight that affect page load time based on data from HTTP Archive and the Chrome User
+          Experience Report - our public dataset for key UX metrics as experienced by Chrome users under real-world
+          conditions.</p>
+      </div>
+      <img src="../../../assets/img/man-laptop-v1.svg" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="users">
+  <div class="container">
+    <h2 class="users__caption">
+      Our cheerful users
+    </h2>
+    <div class="users__second-caption">
+      Attention! Sorting users by registration date
+    </div>
+    <div class="users__items">
+      <div class="user-item" *ngFor="let user of users">
+        <img src="{{user.photo}}" alt="">
+        <div class="user-item__info">
+          <p class="user-item__caption">{{user.name}}</p>
+          <ul>
+            <li>{{user.position}}</li>
+            <li>{{user.email}}</li>
+            <li>{{user.phone}}</li>
+            <li>Registration - {{user.registration_timestamp | timeago}}</li>
+            <li style="font-size: 18px">Sorting for test - <strong>{{user.registration_timestamp}}</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isShowMoreHidden" class="users__btn">
+      <button class="btn btn-secondary" (click)="showMore();">Show more</button>
+    </div>
+  </div>
+</div>
+
+<div class="register">
+  <div class="container">
+    <h2 class="register__caption">
+      Register to get a work
+    </h2>
+    <div class="register__second-caption">
+      Attention! After successful registration and alert, update the list of users in the block from the top
+    </div>
+    <div class="register__form" [formGroup]="form">
+      <div class="register__input">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="form.controls.name.hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="register__input">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="form.controls.email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls.email.hasError('pattern')">
+            Email is <strong>not valid</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="register__input">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Phone</mat-label>
+          <input matInput
+                 formControlName="phone"
+                 prefix="+38"
+                 mask="(000) 000 00 00" [showMaskTyped]="true">
+<!--          TODO: need directive research-->
+          <mat-error *ngIf="form.controls.phone.invalid">
+            Phone is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="register__input register__input-long">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Select your position</mat-label>
+          <mat-select formControlName="position_id">
+            <mat-option *ngFor="let position of positionsList" [value]="position.id">
+              {{position.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls.position_id.hasError('required')">
+            Field is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="register__input register__input-long register__upload">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Upload your photo</mat-label>
+          <ngx-mat-file-input formControlName="photo" placeholder="Basic outline placeholder" #fileInput></ngx-mat-file-input>
+          <mat-hint>File format jpg up to 5 MB, the minimum size of 70x70px</mat-hint>
+          <mat-error *ngIf="form.controls.photo.hasError('maxContentSize')">
+            Image weigh more than <strong>5 mb</strong>
+          </mat-error>
+          <mat-error *ngIf="true">
+            Image <strong>size</strong> not correct
+          </mat-error>
+        </mat-form-field>
+        <button class="btn btn-secondary" (click)="fileInput.open()">Upload</button>
+      </div>
+
+    </div>
+    <div class="register__btn">
+      <button class="btn btn-primary"
+              (click)="createUser()"
+              [disabled]="form.invalid">Sign Up</button>
+    </div>
+  </div>
+</div>

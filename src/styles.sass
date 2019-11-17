@@ -1,0 +1,82 @@
+@import '~normalize.css'
+@import "assets/styles/material"
+
+$orange: #ef6c00
+$orange-light: #fc831f
+$blue: #283593
+
+body
+  font-family: 'Source Sans Pro', sans-serif
+  font-weight: 400
+  font-size: 16px
+  line-height: 22px
+  word-break: break-word
+
+a
+  text-decoration: none
+  cursor: pointer
+  color: #000
+  transition: color .3s !important
+
+  &:hover
+    color: $orange
+
+h1, h2, h3, h4, h5
+  font-family: 'Overpass', sans-serif
+
+h1
+  font-size: 50px
+  line-height: 60px
+
+h2
+  font-size: 42px
+  line-height: 51px
+
+h3
+  font-size: 26px
+  line-height: 31px
+
+.container
+  max-width: 1170px
+  margin: 0 auto
+  padding: 0 15px
+
+.btn
+  cursor: pointer
+  width: 100%
+  padding: 0
+  height: 40px
+  color: #fefefe
+  font-weight: 700
+  font-size: 20px
+  border-radius: 3px
+  transition: background-color .3s
+  border: 2px solid #ef6c00
+
+  &.btn-primary
+    background-color: $orange
+
+    &:hover
+      background-color: $orange-light
+
+  &.btn-secondary
+    color: $orange-light
+    background-color: #ffffff
+
+    &:hover
+      background-color: #fee6d2
+
+  &:hover
+    border-color: $orange-light
+
+  &:disabled
+    background-color: #d7d7d7
+    border-color: #d7d7d7
+    color: #8d8c8c
+    cursor: default
+    &:hover
+      border-color: #d7d7d7
+      background-color: #d7d7d7
+
+.w-100
+  width: 100%
