@@ -24,26 +24,27 @@ $blue: #283593
     font-size: 20px
     line-height: 26px
   &__btn
-    margin-top: 32px
+    margin-top: 36px
     max-width: 290px
 
 
 .acquainted
   .container
     // BUG: 50 padding
-    display: flex
-    padding: 136px 15px 37px 50px
-    img
-      margin-top: 98px
+    padding: 138px 15px 37px 49px
+    &>.flex
+      display: flex
   &__content
     margin-left: 50px
   &__caption
+    text-align: center
+    margin-left: -38px
     margin-bottom: 43px
   &__text
     padding-left: 16px
     color: #4c4b4b
     h3
-      margin-bottom: 6px
+      margin-bottom: 11px
     p
       margin-bottom: 22px
       &:last-child
@@ -59,50 +60,59 @@ $blue: #283593
     &:hover
       color: $orange-light
 
+
 .stack
   .container
-    padding: 40px 0 110px
+    padding: 42px 0 110px
   &__caption
     text-align: center
   &__items
-    margin-top: 44px
+    margin-top: 47px
     display: flex
     flex-wrap: wrap
   &-item
     padding: 0 15px
-    width: 390px
+    width: calc(100%/3)
     margin-bottom: 30px
     &__caption
-      margin-top: 22px
+      margin-top: 24px
+      .phone-br
+        display: none
     &__text
-      margin-top: 8px
+      margin-top: 9px
       color: #4c4b4b
+
 
 .requirements
   background-image: url('../../../../src/assets/img/third-block-bg/third-block-bg-2560x692.jpg')
   background-position: center
   background-size: cover
   .container
-    padding: 134px 0 105px
+    padding: 134px 0 105px 15px
   &__content
     margin-top: 40px
     display: flex
+    img
+      max-width: 100%
   &__caption
     color: #ffffff
     text-align: center
   &__text
     color: #fefefe
     margin-right: 95px
-    padding-left: 15px
     max-width: 570px
     p
       margin-bottom: 21px
       &:last-child
         margin-bottom: 0
+  &__img2
+    display: none
+
 
 .users
+  margin-top: 100px
   .container
-    padding: 135px 0
+    padding: 36px 0 78px
   &__caption
     text-align: center
   &__second-caption
@@ -127,7 +137,8 @@ $blue: #283593
       font-size: 22px
       font-weight: bold
     img
-      width: 70px
+      min-width: 70px
+      max-width: 70px
       height: 70px
       border-radius: 50%
     &__info
@@ -139,9 +150,10 @@ $blue: #283593
         line-height: 18px
         color: #4c4b4b
 
-.register
+
+.registration
   .container
-    padding: 135px 0
+    padding: 78px 0 150px
   &__caption
     text-align: center
   &__second-caption
@@ -158,8 +170,300 @@ $blue: #283593
     cursor: pointer
     padding: 0 15px
     width: calc(100%/3)
+    margin-bottom: 10px
   &__input-long
     width: 50%
   &__btn
     max-width: 290px
-    margin: 40px auto 0
+    margin: 22px auto 0
+  &__upload
+    display: flex
+    position: relative
+    &::ng-deep
+      .mat-form-field-flex
+        // 127 button width
+        width: calc(100% - 127px)
+        ngx-mat-file-input
+          max-width: 100%
+          .filename
+            line-height: 13px
+            word-break: normal
+            text-overflow: ellipsis
+            white-space: nowrap
+            overflow: hidden
+            max-width: 100%
+    .btn
+      height: 60px
+      margin-top: 4px
+      width: 130px
+      min-width: 130px
+      border-radius: 0 5px 5px 0
+      margin-left: -4px
+      z-index: 2
+      position: absolute
+      right: 15px
+      &.mobile
+        display: none
+
+
+@media screen and (max-width: 1200px)
+  .promo
+    background-image: url('../../../assets/img/banner-bg/banner-bg-1204x723.jpg')
+    &__text
+      max-width: 450px
+    .container
+      padding-bottom: 160px
+    .promo__btn
+      margin-top: 38px
+  .requirements
+    background-image: url('../../../../src/assets/img/third-block-bg/third-block-bg-320x1031.jpg')
+    .container
+      padding-bottom: 110px
+  .acquainted
+    .container
+      padding-left: 15px
+      padding-top: 130px
+    &__caption
+      margin-left: 0
+      margin-bottom: 24px
+    &__text h3
+      margin-bottom: 8px
+    &__btn
+      margin-top: 21px
+    &__content
+      margin-left: 14px
+      margin-top: 18px
+
+  .stack
+    .container
+      padding: 87px 0 110px
+    &__items
+      margin-top: 42px
+  .requirements
+    .container
+      padding-right: 15px
+    &__content img
+      margin-top: -30px
+  .users
+    margin-top: 105px
+  .registration .container
+    padding-bottom: 138px
+
+@media screen and (max-width: 1023px)
+  .promo
+    background-image: url('../../../assets/img/banner-bg/banner-bg-768x622.jpg')
+    .container
+      padding-top: 115px
+      padding-bottom: 105px
+    &__caption
+      max-width: 420px
+      line-height: 1.2
+      font-size: 42px
+    &__text
+      font-size: 18px
+      max-width: 400px
+
+  .requirements
+    background-image: url('../../../../src/assets/img/third-block-bg/third-block-bg-1024x755.jpg')
+  .acquainted
+    .container
+      padding-top: 114px
+    .flex img
+      width: 220px
+      margin-top: -22px
+  .stack
+    .container
+      padding: 100px 15px 75px
+      max-width: 630px
+    &__items
+      margin-top: 45px
+      flex-direction: column
+    &-item
+      margin-bottom: 48px
+      width: auto
+      display: flex
+      align-items: flex-start
+      padding: 0
+      &>img
+        width: 89px
+      &__content
+        margin-left: 37px
+        margin-top: -2px
+      &__text
+        margin-top: 4px
+      &__caption
+        margin-top: 0
+
+  .requirements
+    .container
+      padding-top: 115px
+      padding-bottom: 117px
+    &__caption
+      max-width: 420px
+      margin: auto
+    &__content
+      align-items: flex-start
+      img
+        margin-top: 0
+    &__text
+      margin-right: 30px
+      max-width: 345px
+    &__img1
+      display: none
+    &__img2
+      display: block
+
+  .users
+    margin-top: 80px
+    .user-item
+      margin-top: 36px
+      flex-direction: column
+      align-items: center
+      text-align: center
+      &__info
+        max-width: 220px
+        padding-top: 13px
+        padding-left: 0
+
+  .registration
+    .container
+      padding-top: 55px
+      padding-bottom: 120px
+    &__second-caption
+      max-width: 370px
+      margin: 20px auto
+    &__form
+      margin-top: 40px
+
+@media screen and (max-width: 767px)
+  .requirements
+    &__content
+      flex-direction: column-reverse
+      align-items: center
+    &__img1
+      display: block
+    &__img2
+      display: none
+    &__text
+      text-align: center
+      margin-right: 0
+      margin-top: 25px
+
+  .users
+    .user-item
+      width: 100%
+
+  .registration
+    &__input
+      width: 100%
+    &__second-caption
+      padding: 0 15px
+
+@media screen and (max-width: 560px)
+  .promo
+    text-align: center
+    background-image: url('../../../../src/assets/img/banner-bg/banner-bg-320x393.jpg')
+    .container
+      padding-top: 65px
+      padding-bottom: 70px
+    &__caption
+      font-size: 30px
+      margin-bottom: 5px
+    &__text
+      font-size: 16px
+      line-height: 23px
+    .mob-hidden
+      display: none
+  .requirements
+    background-image: url('../../../../src/assets/img/third-block-bg/third-block-bg-320x1031.jpg')
+
+  .acquainted
+    .container
+      padding-top: 56px
+      text-align: center
+    .flex
+      flex-direction: column
+      align-items: center
+      img
+        margin-top: 0
+    &__caption
+      margin-bottom: 14px
+    &__text
+      padding-left: 0
+      h3
+        margin: 0 auto 13px
+        max-width: 190px
+        line-height: 26px
+    &__content
+      margin-left: 0
+      margin-top: 27px
+    &__btn
+      margin: 17px auto 0
+
+  .stack
+    .container
+      padding-top: 31px
+      text-align: center
+    &__caption
+      line-height: 33px
+      .tablet-br
+        display: none
+      .phone-br
+        display: inline-block
+    &__items
+      margin-top: 28px
+    &-item
+      flex-direction: column
+      align-items: center
+      margin-bottom: 26px
+      &:last-child
+        margin-bottom: 0
+      &__text
+        margin-top: 0
+      &__content
+        margin-left: 0
+        margin-top: 8px
+  .requirements
+    .container
+      padding: 67px 15px
+    &__caption
+      line-height: 33px
+    &__content
+      margin-top: 22px
+      img
+        width: 260px
+    &__text
+      margin-top: 21px
+  .users
+    margin-top: 21px
+    .container
+      padding: 36px 15px
+    &__second-caption
+      font-size: 16px
+      max-width: 165px
+      margin: 0 auto
+      .user-item
+        margin-top: 24px
+        &__info
+          margin-top: 8px
+  .registration
+    .container
+      padding-top: 19px
+      padding-bottom: 70px
+    &__second-caption
+      font-size: 16px
+      margin: 0 auto
+      line-height: 24px
+    &__upload
+      &::ng-deep .mat-form-field-flex
+        width: calc(100% - 52px)
+      .btn
+        display: none
+      .btn.mobile
+        display: flex
+        justify-content: center
+        width: 56px
+        min-width: auto
+        svg g
+          fill: $orange
+

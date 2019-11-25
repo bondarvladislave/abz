@@ -3,6 +3,9 @@ import {IUser, UserService} from '../../services/user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {FileValidator} from 'ngx-material-file-input';
+import {switchMap} from 'rxjs/operators';
+import {MatDialog} from '@angular/material';
+import {ConfirmDialogComponent} from '../../components/confirm-dialog/confirm-dialog.component';
 
 interface IStack {
   img: string;
@@ -46,6 +49,8 @@ export class HomePageComponent implements OnInit {
 
   private userListPage = 1;
   private userListCount = 6;
+  private currentUserListPage = 1;
+  private currentUserListCount = 6;
   public isShowMoreHidden = false;
 
   public form: FormGroup = this.fb.group({
@@ -73,20 +78,23 @@ export class HomePageComponent implements OnInit {
 
   constructor(private userService: UserService,
               private authService: AuthService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.form.controls.photo.valueChanges.subscribe(res => {
+      let file;
+      res &&  (file = res.files[0]);
       const _URL = window.URL;
-      const file = res.files[0];
-      const pixels = 7000;
+      const pixels = 70;
       const img = new Image();
       if (file) {
         img.onload = () => {
           if (img.width < pixels || img.height < pixels) {
-            console.log(img.width, img.height);
-            // formData.form.controls['email'].setErrors({'incorrect': true});
+            this.form.controls.photo.setErrors({incorrectSize: true});
+          } else {
+            this.form.controls.photo.setErrors(null);
           }
         };
         img.src = _URL.createObjectURL(file);
@@ -94,6 +102,12 @@ export class HomePageComponent implements OnInit {
     });
     // TODO: relocate to app component
     this.authService.getToken().subscribe();
+    if (window.innerWidth < 768) {
+      this.userListPage = 1;
+      this.userListCount = 3;
+      this.currentUserListPage = 1;
+      this.currentUserListCount = 3;
+    }
     this.getUsers();
     this.userService.getPositions().subscribe(positionsList => {
       this.positionsList = positionsList;
@@ -101,18 +115,20 @@ export class HomePageComponent implements OnInit {
   }
 
   public showMore() {
-    ++this.userListPage;
+    ++this.currentUserListPage;
     this.getUsers();
   }
 
   private getUsers() {
-    this.userService.getUserList(this.userListPage).subscribe((users: IUser[]) => {
-      if (users.length < this.userListCount) {
-        this.isShowMoreHidden = true;
-      }
-      this.users = [...this.users, ...users];
-      this.userListSort();
-    });
+    this.userService.getUserList(this.currentUserListPage, this.currentUserListCount).subscribe((users) => this.listBuilder(users));
+  }
+
+  private listBuilder(users) {
+    if (users.length < this.userListCount) {
+      this.isShowMoreHidden = true;
+    }
+    this.users = [...this.users, ...users];
+    this.userListSort();
   }
 
   // sorted on backend? or i must do it
@@ -122,8 +138,18 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  private createUser() {
-    this.userService.createUser(this.form.value).subscribe();
-  }
 
+  // TODO: should i use optimistic updates and just push new person in user array?
+  public createUser() {
+    this.userService.createUser(this.form.value).pipe(
+      switchMap(() => this.userService.getUserList(1, this.currentUserListCount))).subscribe((users) => {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          width: '290px'
+        });
+        this.form.reset();
+        this.currentUserListPage = this.userListPage;
+        this.users = [];
+        this.listBuilder(users);
+    });
+  }
 }

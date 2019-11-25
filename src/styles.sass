@@ -5,6 +5,9 @@ $orange: #ef6c00
 $orange-light: #fc831f
 $blue: #283593
 
+html
+  scroll-behavior: smooth
+
 body
   font-family: 'Source Sans Pro', sans-serif
   font-weight: 400
@@ -19,7 +22,7 @@ a
   transition: color .3s !important
 
   &:hover
-    color: $orange
+    color: $orange!important
 
 h1, h2, h3, h4, h5
   font-family: 'Overpass', sans-serif
@@ -80,3 +83,29 @@ h3
 
 .w-100
   width: 100%
+
+
+.text-overflow
+  display: block
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.side-menu-active
+  overflow: hidden
+
+@media screen and (max-width: 1200px)
+  .container
+    max-width: 960px
+
+@media screen and (max-width: 1023px)
+  .container
+    max-width: 750px
+
+@media screen and (max-width: 560px)
+  .container
+    max-width: 320px
+  h2
+    font-size: 26px
+  h3
+    font-size: 22px
